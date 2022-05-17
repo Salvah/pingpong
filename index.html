@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #barra {
+            position: absolute;
+            top: 30px;
+            width: 10px;
+            height: 80px;
+            background-color: black;
+        }
+        #bola {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+    <div id="barra"></div>
+    <div id="bola"></div>
+    <script>
+        let top1 = 30;
+        let bX = 0;
+        let bY = 0;
+        let dY = 1;
+        let dX = 1;
+        onload = () => {
+            document.body.addEventListener('keydown', ({key}) => {
+                if (key == "ArrowDown"){
+                    top1 += 10;
+                }
+                if (key == "ArrowUp"){
+                    top1 -= 10;
+                }
+                document.getElementById('barra').style.top = `${top1}px`
+            })
+
+            setInterval(() => {
+
+                if (bY > 300 || bY < 0){
+                    dY = dY == 1 ? -1 : 1
+                }
+
+                if (bX > 400 || bX < 0){
+                    dX = dX == 1 ? -1 : 1
+                }
+
+                bX += dX * 2;
+                bY += dY * 2;
+
+                document.getElementById('bola').style.top = `${bY}px`
+                document.getElementById('bola').style.left = `${bX}px`
+            }, 8)
+        }
+    </script>
+</body>
+</html>
